@@ -1,5 +1,4 @@
 ja:
-  defaults:
   follows:
     create:
       success: 'フォローしました'
