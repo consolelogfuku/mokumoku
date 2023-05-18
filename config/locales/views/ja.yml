@@ -1,0 +1,6 @@
+ja:
+  follows:
+    create:
+      success: 'フォローしました'
+    destroy:
+      success: 'フォロー解除しました'

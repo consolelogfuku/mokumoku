@@ -1,0 +1,2 @@
+<%# フォローするボタン(そのユーザーをフォローしていない時に表示) %>
+<%= link_to "フォローする", follows_path(id: user.id), class:"btn btn-primary mt-5", method: :post, remote: true, id: "js-follow-button-#{user.id}" %>
