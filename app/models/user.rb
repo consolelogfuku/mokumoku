@@ -3,16 +3,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
-  # フォローする側
-  has_many :follows, class_name: 'Follow', foreign_key: 'follower_id', dependent: :destroy, inverse_of: :follower
-  # フォローされる側
-  has_many :reverse_of_follows, class_name: 'Follow', foreign_key: 'followed_id', dependent: :destroy, inverse_of: :followed
-
-  # フォローする側から見て、フォローされる側を取得する
-  has_many :followings, through: :follows, source: :followed
-  # フォローされる側から見て、フォローする側を取得する
-  has_many :followers, through: :reverse_of_follows, source: :follower
-
   has_many :events, dependent: :destroy
   has_many :event_attendances, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -87,20 +77,4 @@ class User < ApplicationRecord
     notification_timings.liked_event.present?
   end
 
-  # user.follow(other_user)
-  def follow(other_user)
-    followings << other_user # follows.create(followed_id: other_user.id)
-  end
-
-  # user.unfollow(other_user)
-  def unfollow(other_user)
-    follow = follows.find_by(followed_id: other_user.id)
-    return if follow.nil?
-    follow.destroy
-  end
-
-  # user.following?(other_user)
-  def follow?(other_user)
-    followings.include?(other_user)
-  end
 end
