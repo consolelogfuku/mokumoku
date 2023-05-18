@@ -1,5 +1,0 @@
-<% if current_user.follow?(user) %>
-  <%= render 'unfollow_button', user: user %>
-<% else %>
-  <%= render 'follow_button', user: user %>
-<% end %>

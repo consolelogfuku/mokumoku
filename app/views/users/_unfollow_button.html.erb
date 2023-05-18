@@ -1,2 +1,0 @@
-<%# フォローを外すボタン(そのユーザーをフォローしているときに時に表示) %>
-<%= link_to "フォローを外す", follow_path(id: user.id), class:"btn btn-outline-primary mt-5", method: :delete, remote: true, id: "js-follow-button-#{user.id}" %>
