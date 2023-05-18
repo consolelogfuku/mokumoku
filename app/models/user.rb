@@ -94,7 +94,8 @@ class User < ApplicationRecord
 
   # user.unfollow(other_user)
   def unfollow(other_user)
-    followings.destroy(other_user) # follows.find_by(followed_id: other_user.id).destroy
+    # follows.find_by(followed_id: other_user.id)がnilでも例外を発生させず、nilを返す
+    follows.find_by(followed_id: other_user.id)&.destroy
   end
 
   # user.following?(other_user)
